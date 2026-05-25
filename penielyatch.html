@@ -1,0 +1,335 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Peniel Planet — Yacht Advertising</title>
+  <meta name="description" content="Premium yacht advertising, brokerage listings and bespoke promotions.">
+
+  <style>
+    /* -------------------------
+       CONFIG / EASY EDIT ZONE
+       ------------------------- */
+    :root{
+      --brand: #0b6ba8;        /* Primary brand color */
+      --accent: #f4b400;       /* Accent color */
+      --muted: #6b7280;        /* Neutral grey */
+      --bg: #fafafa;           /* Page background */
+      --card-bg: #ffffff;      /* Card background */
+      --glass: rgba(255,255,255,0.6);
+      --radius: 14px;
+      --max-width: 1200px;
+      --hero-height: 64vh;
+      --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    /* Small helper to quickly change hero image: edit --hero-img below */
+    :root{ --hero-img: url('yatch cover 2.jpg'); }
+
+    /* -------------------------
+       BASIC RESET
+       ------------------------- */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font-sans);
+      color:#111827;
+      background:var(--bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 20px}
+
+    /* -------------------------
+       NAVIGATION
+       ------------------------- */
+    header{
+      position:sticky;top:12px;z-index:40;backdrop-filter:blur(6px);
+      padding:8px 0;display:flex;align-items:center;justify-content:center
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--max-width)}
+    
+    .brand{display:flex;gap:12px;align-items:center}
+
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#0ea5a3);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    
+    nav ul{display:flex;gap:18px;align-items:center;margin:0;padding:0;list-style:none}
+
+    .cta{background:var(--brand);color:white;padding:10px 14px;border-radius:10px;font-weight:600}
+
+    /* -------------------------
+       HERO
+       ------------------------- */
+    .hero{
+      min-height:var(--hero-height);
+      display:grid;align-items:center;
+      border-radius:20px;overflow:hidden;margin:18px auto;position:relative;
+      background-image:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.08)), var(--hero-img);
+      background-size:cover;background-position:center;
+    }
+    .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.12));}
+    .hero-content{position:relative;color:white;padding:48px;max-width:980px}
+
+    .hero h1{font-size:clamp(28px,5vw,44px);margin:0 0 10px;line-height:1.02}
+
+    .hero p{margin:0 0 20px;color:rgba(255,255,255,0.9);font-size:1.05rem}
+
+    .hero .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+    /* -------------------------
+       FEATURES / CARDS
+       ------------------------- */
+    section{padding:56px 0}
+
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{background:var(--card-bg);border-radius:16px;padding:18px;box-shadow:0 6px 18px rgba(2,6,23,0.08);overflow:hidden;display:flex;flex-direction:column}
+
+    .card img{width:100%;height:190px;object-fit:cover;border-radius:10px;margin-bottom:12px}
+
+    .card h3{margin:0 0 8px}
+
+    .card p{margin:0 0 14px;color:var(--muted);flex-grow:1}
+
+    .price{font-weight:700;color:var(--brand)}
+
+    /* -------------------------
+       ABOUT + SERVICES
+       ------------------------- */
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+    .about p{color:var(--muted);line-height:1.6}
+
+    /* -------------------------
+       CONTACT
+       ------------------------- */
+    .contact-card{background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85));padding:20px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.06);}
+
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+    input,textarea,button{font:inherit}
+
+    input,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #e6e9ee}
+
+    textarea{min-height:110px;resize:vertical}
+
+    .btn-primary{background:var(--brand);color:white;padding:12px 16px;border-radius:10px;border:none;font-weight:700}
+
+    /* -------------------------
+       FOOTER
+       ------------------------- */
+    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:.95rem}
+
+    /* -------------------------
+       RESPONSIVE
+       ------------------------- */
+    @media (max-width:1000px){
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .split{grid-template-columns:1fr}
+      .hero{min-height:52vh}
+    }
+    @media (max-width:700px){
+      .nav-inner{padding:0 10px}
+      nav ul{display:none}
+      .hero{border-radius:12px;margin:12px}
+      .hero-content{padding:20px}
+      section{padding:36px 0}
+      .cards{grid-template-columns:1fr}
+      .hero h1{font-size:28px}
+      .form-row{grid-template-columns:1fr}
+    }
+
+    /* Small polish */
+    .muted{color:var(--muted)}
+    .small{font-size:.92rem}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--glass);backdrop-filter:blur(4px);font-weight:600}
+
+  </style>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+
+  <header>
+    <div class="nav-inner container">
+      <div class="brand">
+        <div class="logo">PPY</div>
+        <div>
+          <div style="font-weight:700">PENIEL PLANET Yachts</div>
+          <div class="small muted">Yacht Advertising & Brokerage</div>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a class="cta" href="index.html">Home</a></li>
+
+          <li><a href="#about">Yachts</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact" class="cta">Advertise Your Yacht</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="hero" aria-label="hero">
+      <div class="hero-content">
+  
+          
+        <span class="pill">Premium Listings</span>
+        <h1>Showcase your yacht to the right buyers worldwide</h1>
+        <p>High-quality visuals & targeted advertising to connect sellers with qualified clients. Fast listings — global reach.
+
+        </p>
+        
+        <div class="hero-actions">
+          <a class="cta" href="#contact">List a Yacht</a>
+          <a class="small muted" href="#yachts">See Featured Yachts</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="yachts">
+      <h2 style="margin:0 0 16px">Featured Yachts</h2>
+      <p class="muted small" style="margin:0 0 20px">Handpicked yachts with professional photos and full specs.</p>
+
+      <div class="cards">
+        <!-- Card 1: swap image src with your own photo -->
+        <article class="card">
+          <img src="images/yacht1.jpg" alt="Featured yacht 1">
+          <h3>Serenity 58</h3>
+          <p class="small">A refined 58-foot cruiser with full amenities, ideal for long-range comfort and entertaining.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="price">$1,250,000</div>
+            <a class="small" href="#contact">Inquire</a>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card">
+          <img src="images/yacht2.jpg" alt="Featured yacht 2">
+          <h3>peniel Pulse 42</h3>
+          <p class="small">Sporty and elegant — perfect for coastal cruising with a modern, efficient hull design.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="price">$420,000</div>
+            <a class="small" href="#contact">Inquire</a>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card">
+          <img src="images/yacht3.jpg" alt="Featured yacht 3">
+          <h3>Voyager 120</h3>
+          <p class="small">Luxury long-range explorer yacht with extensive guest accommodations and bespoke finishes.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="price">$8,950,000</div>
+            <a class="small" href="#contact">Inquire</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="split">
+        <div class="about">
+          <h2>About PENIEL Yachts</h2>
+          <p>We combine premium photography, targeted online campaigns, and yacht-market expertise to position listings for visibility. Our team helps sellers prepare listings, advise on pricing, and reach the right audience across multiple channels.</p>
+          <p class="muted small">Editable: change this paragraph with your company's story, mission, or team highlights.</p>
+        </div>
+
+        <div>
+          <h3 class="small" style="margin-top:0">Services</h3>
+          <ul style="padding-left:18px;color:var(--muted)">
+            <li>Listing creation & photography</li>
+            <li>Targeted digital advertising</li>
+            <li>Broker introduction & negotiation support</li>
+            <li>Video walkthroughs & 360° tours</li>
+          </ul>
+          <div style="margin-top:16px">
+            <a href="#contact" class="btn-primary">Start a Listing</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <h2 style="margin:0 0 12px">Why Advertise With Us</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:12px">
+        <div class="card" style="padding:14px;align-items:flex-start">
+          <strong>Global Reach</strong>
+          <p class="small muted">We promote listings across platforms to reach buyers worldwide.</p>
+        </div>
+        <div class="card" style="padding:14px;align-items:flex-start">
+          <strong>Premium Presentation</strong>
+          <p class="small muted">Professional photos, specs, and copy that attract serious buyers.</p>
+        </div>
+        <div class="card" style="padding:14px;align-items:flex-start">
+          <strong>Dedicated Support</strong>
+          <p class="small muted">Advisory and negotiation support through to closing.</p>
+        </div>
+      </div>
+    </section>
+<!-- 
+    <section id="contact">
+      <h2>Contact & Listing Inquiry</h2>
+      <p class="muted small">Fill this form and our team will get back to you within 24–48 hours.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:24px;margin-top:18px">
+        <form class="contact-card" style="background:linear-gradient(180deg,#fff, #fbfbff);" action="#" onsubmit="return false;">
+          <div class="form-row">
+            <input type="text" placeholder="Your name" required>
+            <input type="email" placeholder="Email address" required>
+          </div>
+          <div style="margin-top:12px">
+            <input type="text" placeholder="Yacht model / title">
+          </div>
+          <div style="margin-top:12px">
+            <textarea placeholder="Message or details (year, length, location)"></textarea>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:10px;align-items:center;justify-content:flex-end">
+            <button class="btn-primary" type="submit">Send Inquiry</button>
+          </div>
+        </form> -->
+
+        <aside style="align-self:start">
+          <div class="contact-card">
+            <h3 style="margin-top:0">Quick Info</h3>
+            <p class="small muted">Phone:08157444459 <br>Email:</p>
+            <div style="margin-top:12px">
+              <strong>Office</strong>
+              <p class="small muted">Enugu, Nigeria — Available for in-person inspections by appointment.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="margin-bottom:8px">© <span id="year">2025</span> Peniel Planet Yachts — All rights reserved</div>
+      <div class="small muted">Made by maxcodes-07064529489
+    </div>
+  </footer>
+
+  <!--
+    EDITING NOTES:
+    - Change the hero image: edit the CSS variable --hero-img near the top.
+      Example: :root{ --hero-img: url('images/your-hero.jpg'); }
+    - Replace images/yacht1.jpg, yacht2.jpg, yacht3.jpg with your images.
+    - Colors: change --brand and --accent variables.
+    - To split CSS: place everything inside <style> into styles.css and add
+      <link rel="stylesheet" href="styles.css"> in the head.
+    - This file intentionally uses minimal markup so it's easy to edit.
+  -->
+
+</body>
+</html>
+
